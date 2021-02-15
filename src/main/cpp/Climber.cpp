@@ -32,45 +32,45 @@ void Climber::climbToPos() {
 }
 
 //Activate scissor lift - sets gear to one for Drivetrain for safety and limits peak output
-void Climber::scissorLift(Drivetrain& Drive) { 
-    if (scissor.Get() == frc::DoubleSolenoid::Value::kForward) {
-		scissor.Set(frc::DoubleSolenoid::Value::kReverse); //Which one means that it actually goes up? assuming its kForward
+ void Climber::scissorLift(Drivetrain& Drive) { 
+//     if (scissor.Get() == frc::DoubleSolenoid::Value::kForward) {
+// 		scissor.Set(frc::DoubleSolenoid::Value::kReverse); //Which one means that it actually goes up? assuming its kForward
         scissorLiftStatus = RETRACTED;
-        hookIsOn = true;
-        //toggleScissorCanBeDeployedStatus(); //Automatically makes scissorCanBeDeployed back to disabled once it is retracted
-	}
-    else {
-		scissor.Set(frc::DoubleSolenoid::Value::kForward);
-        scissorLiftStatus = EXTENDED;
-        Drive.setGear(1);
-        hookIsOn = false;
-	}
+//         hookIsOn = true;
+//         //toggleScissorCanBeDeployedStatus(); //Automatically makes scissorCanBeDeployed back to disabled once it is retracted
+// 	}
+//     else {
+// 		scissor.Set(frc::DoubleSolenoid::Value::kForward);
+//         scissorLiftStatus = EXTENDED;
+//         Drive.setGear(1);
+//         hookIsOn = false;
+// 	}
 
-    Drive.setScissorPeakOutput(scissorLiftStatus);
-}
+//     Drive.setScissorPeakOutput(scissorLiftStatus);
+// }
 
-void Climber::toggleScissorCanBeDeployedStatus() {
-    if (scissorCanBeDeployedStatus == ENABLED) {
-        scissorCanBeDeployedStatus = DISABLED;
-    }
-    else {
-        scissorCanBeDeployedStatus = ENABLED;
-    }
-}
+// void Climber::toggleScissorCanBeDeployedStatus() {
+//     if (scissorCanBeDeployedStatus == ENABLED) {
+//         scissorCanBeDeployedStatus = DISABLED;
+//     }
+//     else {
+//         scissorCanBeDeployedStatus = ENABLED;
+//     }
+// }
 
-int Climber::getWinchPosition() {
-    return winch.GetSelectedSensorPosition(0);
-}
+// int Climber::getWinchPosition() {
+//     return winch.GetSelectedSensorPosition(0);
+// }
 
-void Climber::Printer() {
-    std::cout << "Winch Position " << getWinchPosition() << " counts" << std::endl;
-    std::cout << "Scissor Climb Can Be Deployed Status " << ((scissorCanBeDeployedStatus == ENABLED) ? "ENABLED" : "DISABLED") << std::endl;
-    std::cout << "Scissor Climb Deployed " << ((scissorLiftStatus == EXTENDED) ? "EXTENDED" : "RETRACTED") << std::endl;
-}
+// void Climber::Printer() {
+//     std::cout << "Winch Position " << getWinchPosition() << " counts" << std::endl;
+//     std::cout << "Scissor Climb Can Be Deployed Status " << ((scissorCanBeDeployedStatus == ENABLED) ? "ENABLED" : "DISABLED") << std::endl;
+//     std::cout << "Scissor Climb Deployed " << ((scissorLiftStatus == EXTENDED) ? "EXTENDED" : "RETRACTED") << std::endl;
+// }
 
-void Climber::dashboardPrinter() {
-    frc::SmartDashboard::PutNumber("Winch Position (counts)", getWinchPosition());
-    frc::SmartDashboard::PutString("Scissor Climb Can Be Deployed Status", (scissorCanBeDeployedStatus == ENABLED) ? "ENABLED" : "DISABLED"); 
-    frc::SmartDashboard::PutString("Scissor Climb Deployed", (scissorLiftStatus == EXTENDED) ? "EXTENDED" : "RETRACTED");
-    frc::SmartDashboard::PutBoolean("Hook is On", hookIsOn);
+// void Climber::dashboardPrinter() {
+//     frc::SmartDashboard::PutNumber("Winch Position (counts)", getWinchPosition());
+//     frc::SmartDashboard::PutString("Scissor Climb Can Be Deployed Status", (scissorCanBeDeployedStatus == ENABLED) ? "ENABLED" : "DISABLED"); 
+//     frc::SmartDashboard::PutString("Scissor Climb Deployed", (scissorLiftStatus == EXTENDED) ? "EXTENDED" : "RETRACTED");
+//     frc::SmartDashboard::PutBoolean("Hook is On", hookIsOn);
 }

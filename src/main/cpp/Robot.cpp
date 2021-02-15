@@ -272,28 +272,31 @@ void Robot::TeleopPeriodic() {
     
   // ----------------------------------------------------------------- SEQUENCING CLIMBING ----------------------------------------------------------------------------
     //Change Climb Status
-    if (driverJoy.GetRawButtonPressed(climbStatusBtnSequence) && Climb.scissorLiftStatus == RETRACTED) {
-      Climb.toggleScissorCanBeDeployedStatus();
-    }
+    
+    //if (driverJoy.GetRawButtonPressed(climbStatusBtnSequence) && Climb.scissorLiftStatus == RETRACTED;) 
+    
+    //{
+    //  Climb.toggleScissorCanBeDeployedStatus();
+    //}
 
     //Climbing
-    if (Climb.scissorCanBeDeployedStatus == ENABLED) {
-      if (driverJoy.GetRawButtonPressed(climbScissorJoyBtnSequence)) { 
-        Climb.scissorLift(Drive);
-        Pickup.Pickup(0);
-        Index.Spin(0);
-        Index.feedBall(0); 
-        Shoot.ShootRPMs(0);
-        Shoot.shooterStatus = DISABLED;
-      }
-    }
+    //if (Climb.scissorCanBeDeployedStatus == ENABLED) {
+    //  if (driverJoy.GetRawButtonPressed(climbScissorJoyBtnSequence)) { 
+    //    Climb.scissorLift(Drive);
+    //    Pickup.Pickup(0);
+    //     Index.Spin(0);
+    //     Index.feedBall(0); 
+    //     Shoot.ShootRPMs(0);
+    //     Shoot.shooterStatus = DISABLED;
+    //   }
+    // }
 
     //Only turn on winch if the hook is on - the hook is on when the lift is retracted for the first time
-    if (Climb.hookIsOn) {
-      if (fabs(Deadzone(driverJoy.GetRawAxis(winchChlSequence))) > 0.2) {
-        Climb.climbToPos(); 
-      }
-    }
+    // if (Climb.hookIsOn) {
+    //   if (fabs(Deadzone(driverJoy.GetRawAxis(winchChlSequence))) > 0.2) {
+    //     Climb.climbToPos(); 
+    //   }
+    // }
   }
 
   // ---------------------------------------------------------------------- END ---------------------------------------------------------------------------------------
@@ -361,20 +364,20 @@ void Robot::TeleopPeriodic() {
   // -------------------------------------------------------------- NON-SEQUENCING CLIMBING -----------------------------------------------------------------------------
 
     //Change Climb Status
-    if (driverJoy.GetRawButtonPressed(climbStatusBtn) && Climb.scissorLiftStatus == RETRACTED) {
-      Climb.toggleScissorCanBeDeployedStatus();
-    }
+    // if (driverJoy.GetRawButtonPressed(climbStatusBtn) && Climb.scissorLiftStatus == RETRACTED) {
+    //   Climb.toggleScissorCanBeDeployedStatus();
+    // }
 
-    //Climbing
-    if (Climb.scissorCanBeDeployedStatus == ENABLED) {
-      if (driverJoy.GetRawButton(climbScissorJoyBtn)) { 
-        Climb.scissorLift(Drive);
-      }
-    }
+    // //Climbing
+    // if (Climb.scissorCanBeDeployedStatus == ENABLED) {
+    //   if (driverJoy.GetRawButton(climbScissorJoyBtn)) { 
+    //     Climb.scissorLift(Drive);
+    //   }
+    // }
 
-    if (Climb.scissorLiftStatus == EXTENDED) {
-      Climb.Climb(Deadzone(driverJoy.GetRawAxis(climbJoyChl)));
-    }
+  //   if (Climb.scissorLiftStatus == EXTENDED) {
+  //     Climb.Climb(Deadzone(driverJoy.GetRawAxis(climbJoyChl)));
+  //   }
   }
 
   // ----------------------------------------------------------------------- END ----------------------------------------------------------------------------------------
@@ -392,7 +395,7 @@ void Robot::TeleopPeriodic() {
 
   //Dashboard and Printing
   Pickup.dashboardPrinter();
-  Climb.dashboardPrinter();
+  //Climb.dashboardPrinter();
   Drive.dashboardPrinter();
   Index.dashboardPrinter();
   //Spinner.dashboardPrinter();

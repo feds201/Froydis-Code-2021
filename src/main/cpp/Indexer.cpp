@@ -29,9 +29,9 @@ void Indexer::Spin(double triggerForward, double triggerReverse) {
 	}	
 }
 
-void Indexer::moveFixedPositions() {
+//void Indexer::moveFixedPositions() {
 	
-}
+//}
 
 //Overloaded method - spins indexer just using one speed input
 void Indexer::Spin(double speed) {
