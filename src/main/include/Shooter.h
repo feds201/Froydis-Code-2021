@@ -57,9 +57,14 @@ class Shooter {
 
     //int wristPosList[8] = {0, 500, 550, 600, 650, 700, 800, 1100}; //About 44, 52, 61, and 70, 100 degrees LOOK AT THIS 
     //int speeds[10] = {0, 1000, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3500};
+    
+    //shooting positions for 2020
+    //int wristPosList[5] = {0, 550, 850, 700, 550};
+    //int speeds[5] = {1000, 1000, 2000, 2500, 3000};
 
-    int wristPosList[5] = {0, 550, 850, 700, 550};
-    int speeds[5] = {1000, 1000, 2000, 2500, 3000};
+    //revised shooting positions for 2021
+    int wristPosList[5] = {0, 500, 700, 650, 600};
+    int speeds[5] = {1000, 1000, 2250, 2500, 2500};
     
     int currentSpeedPos = 0;
 
