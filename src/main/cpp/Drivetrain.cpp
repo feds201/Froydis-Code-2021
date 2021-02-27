@@ -63,8 +63,8 @@ Drivetrain::Drivetrain() {
 //Drive using ControlMode::Percent
 void Drivetrain::drivePercent(double forward, double turn) {
     
-    leftThrot = turn - forward;
-    rightThrot = turn + forward;
+    leftThrot = 0.75*(turn - forward);
+    rightThrot = 0.75*(turn + forward);
     
     backLeft.Set(TalonFXControlMode::PercentOutput, leftThrot);
     frontLeft.Set(TalonFXControlMode::PercentOutput, leftThrot);
