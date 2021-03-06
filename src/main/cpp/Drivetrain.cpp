@@ -31,7 +31,7 @@ Drivetrain::Drivetrain() {
     configMotor(backRight);
 
     setGear(1);
-    setBrakeMode(ENABLED);
+    setBrakeMode(DISABLED);
 
     //Current limits on devices and on Talon FX's
     //Current too high for too long return to home position 

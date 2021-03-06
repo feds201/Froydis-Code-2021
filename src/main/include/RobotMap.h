@@ -15,6 +15,7 @@
 #include "frc/AnalogInput.h" //Pressure
 #include "frc/DigitalInput.h" //Limit Switches
 #include "frc/TimedRobot.h" 
+
 #include "frc/DriverStation.h" //Panel Spinner
 #include "frc/smartdashboard/SendableChooser.h"
 #include "frc/smartdashboard/SmartDashboard.h"
@@ -137,8 +138,8 @@ constexpr int climbJoyChl = 3; //Right Trigger (Driver)
 constexpr int climbScissorJoyBtn = 3; //X Button (Driver)
 
 constexpr int ballPickupJoyChl = 5; //Y Axis on Right Joystick (Operator)
-constexpr int ballPickupMoveArmJoyChl = 2; //Left Trigger (Driver)
-constexpr int ballPickupMoveArmReverseJoyBtn = 3; //Y Button (Driver)
+constexpr int ballPickupMoveArmJoyChl = 100; //Left Trigger (Driver) (changed from 2 to 100 in order to disable)
+constexpr int ballPickupMoveArmReverseJoyBtn = 100; //Y Button (Driver) (changed from 3 to 100 in order to disable)
 
 constexpr int indexFwdJoyChl = 3; //Right Trigger (Operator) 
 constexpr int indexJoyFeederChl = 1; //Y Axis on Left Joystick (Operator)
