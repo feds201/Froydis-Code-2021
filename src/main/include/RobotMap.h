@@ -108,6 +108,8 @@ constexpr int pdpID = 0;
 constexpr int pressureTransducerID = 0; //FIX
 constexpr int PCMID = 0; 
 
+constexpr double riolooptime = 60;  //looptime in ms
+
 enum enableStatus {ENABLED, DISABLED};
 enum positionStatus {RETRACTED, EXTENDED};
 enum direction {UP, DOWN};
@@ -259,7 +261,7 @@ constexpr double wrist_maxIntegralAccum = 10;
 constexpr int indexerMotorID = 7; //SRX 
 constexpr int feederMotorID = 1; //SRX
 
-constexpr int index_P = 0;
+constexpr int index_P = 0.15; //for position control on slot 0 with absolute encoder counts.
 constexpr int index_I = 0;
 constexpr int index_D = 0;
 

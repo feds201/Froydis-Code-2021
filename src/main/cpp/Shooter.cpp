@@ -274,7 +274,7 @@ void Shooter::unJamBall(){
     if (currentRPM > 1000 && rpms[0] < 500 || rpms[1] < 500 ) {
         
         shooterLoopTime += 1;
-        shooterRealTime = (shooterLoopTime * 40) / 1000;
+        shooterRealTime = (shooterLoopTime * riolooptime) / 1000;
       
         if (shooterRealTime > 2) {
             if (shooterRealTime < 4) {

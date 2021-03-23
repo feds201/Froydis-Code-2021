@@ -25,7 +25,7 @@ void Auton::lowGoal(double userBackLeft, double fwd, double turn, Drivetrain& Dr
         Drive.setBrakeMode(ENABLED); //Only for testing
 
         loopTime += 1;
-        realTime = (loopTime * 40) / 1000;
+        realTime = (loopTime * riolooptime) / 1000;
         
         if (realTime < autonTime) {
             Index.feedBall(FEEDER_WHEEL_SPEED);
@@ -45,7 +45,7 @@ void Auton::lowGoal(double userBackLeft, double fwd, double turn, Drivetrain& Dr
 void Auton::highGoal(double userBackLeft, double fwd, double turn, Drivetrain& Drive, Shooter& Shoot, Indexer& Index){
 
     loopTime += 1;
-    realTime = (loopTime * 40) / 1000;
+    realTime = (loopTime * riolooptime) / 1000;
 
     if (realTime < 4) {
         Shoot.moveWristToPosition(750); //Used to be 700
@@ -77,7 +77,7 @@ void Auton::highGoal(double userBackLeft, double fwd, double turn, Drivetrain& D
 void Auton::highGoalPickup(double userBackLeft, double fwd, double turn, Drivetrain& Drive, Shooter& Shoot, Indexer& Index, BallPickup& Pickup) {
     
     loopTime += 1;
-    realTime = (loopTime * 40) / 1000;
+    realTime = (loopTime * riolooptime) / 1000;
 
     if (realTime < 4) {
         Shoot.moveWristToPosition(750); //Used to be 700

@@ -35,7 +35,7 @@ class Indexer {
 
   double realTime = 0;
 
-  //int posList[3] = {1000, 1000, 1000}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
+  int posList[3] = {100, 1665, 3000}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
 
   //frc::DigitalInput indexSwitch{indexSwitchID};
 };
