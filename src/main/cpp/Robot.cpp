@@ -227,6 +227,7 @@ void Robot::TeleopPeriodic() {
             Index.feedBall(FEEDER_WHEEL_SPEED);
             Index.setPushBall(EXTENDED);
             Index.Spin(INDEXER_SPEED_FINAL_BOT);
+            //Index.moveIndexFixedPos(indexPauseTime);
           }
 
           else {

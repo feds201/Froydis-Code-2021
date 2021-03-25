@@ -272,7 +272,8 @@ constexpr int indexSwitchID = 1000; //set to 1000 to disable
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.20;
-constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.225;
+constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;  //reduced for better manual control
+constexpr double indexPauseTime = 2;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
 

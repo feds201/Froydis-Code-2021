@@ -18,6 +18,7 @@ class Indexer {
   void setPushBall(positionStatus);
   void feedBall(double);
   void Divet(double, double, double);
+  void moveIndexFixedPos(double);
   bool checkLimitSwitch();
   int getIndexerPosition();
   double getFeederRPM();
@@ -26,6 +27,8 @@ class Indexer {
   void dashboardPrinter();
 
   double divetTime = 0;
+  double fixedPosTime = 0;
+  int indexNum = 0;
 
  private:
   WPI_TalonSRX index{indexerMotorID};
@@ -35,7 +38,7 @@ class Indexer {
 
   double realTime = 0;
 
-  int posList[3] = {100, 1665, 3000}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
+  int indexPosList[3] = {100, 1665, 3000}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
 
   //frc::DigitalInput indexSwitch{indexSwitchID};
 };

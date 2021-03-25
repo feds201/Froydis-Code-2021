@@ -66,7 +66,7 @@ void Indexer::feedBall(double speed) {
 void Indexer::Divet(double time, double timeTwo, double speed) {
 
 	divetTime += 1; //Number of times loop repeats 
-	realTime = (divetTime * riolooptime) / 1000; //Since loop repeats every riolooptime (60 ms) this converts it into seconds
+	realTime = (divetTime * riolooptime) / 1000; //Since loop repeats every riolooptime (80ms) this converts it into seconds
 
 	if (realTime < time) {
 		Spin(-1 * speed);
@@ -81,6 +81,30 @@ void Indexer::Divet(double time, double timeTwo, double speed) {
 		divetTime = 0;
 	}
 }
+
+ void Indexer::moveIndexFixedPos(double indexTime) {
+	fixedPosTime += 1;
+	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (80ms) this converts to seconds
+     
+	if (realTime < indexTime) {
+	// 	indexNum = indexNum;
+	index.Set(ControlMode::Position, 100);
+	 }
+	// 	if (indexNum > 2) {
+	// 		indexNum = 0;
+	// 	}
+	 	else if (realTime < 2* indexTime) {
+			 index.Set(ControlMode::Position, 1650);
+	// 		indexNum += indexNum;
+	 	}
+		 else if (realTime < 3* indexTime) {
+		 index.Set(ControlMode::Position, 3000);
+		 }
+		 else
+		 {
+			 fixedPosTime = 0;
+		 }
+	}
 
 
 int Indexer::getIndexerPosition() {

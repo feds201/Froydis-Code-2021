@@ -56,7 +56,7 @@ void Shooter::ShootRPMs(double speed) {
     slaveShooterPID.SetReference(speed, rev::ControlType::kVelocity);
 }
 
-//Shoot at a pre-set speed determined by plannedRPM, gotten from the speeds[] array
+//Shoot at a pre-set speed determined by , gotten from the speeds[] array
 void Shooter::ShootFixedRPMS() { 
 
     if (shootOverrideStatus == DISABLED) {
