@@ -9,12 +9,6 @@
 
 Drivetrain::Drivetrain() {
 
-    //Inverts and phases used to implement velocity control - encoder counts go up when Joystick is forward
-    //frontRight.SetInverted(true);
-    //backRight.SetInverted(true); 
-    //frontRight.SetSensorPhase(true);
-    //backRight.SetSensorPhase(true);
-
     frontRight.SetInverted(false);
     backRight.SetInverted(false);
     frontRight.SetSensorPhase(false);
@@ -111,35 +105,20 @@ void Drivetrain::setGear(int gear) {
     }
 }
 
-//Configs peak output of motors when scissor lift is up
-void Drivetrain::setScissorPeakOutput(positionStatus scissor) {
-    if (scissor == EXTENDED) {
-        backLeft.ConfigPeakOutputForward(.2, 10);
-        backLeft.ConfigPeakOutputReverse(-.2, 10);
+//Configs peak output of motors
+void Drivetrain::setPeakOutput() {
 
-        backRight.ConfigPeakOutputForward(.2, 10);
-        backRight.ConfigPeakOutputReverse(-.2, 10);
+    backLeft.ConfigPeakOutputForward(1, 10);
+    backLeft.ConfigPeakOutputReverse(-1, 10);
 
-        frontLeft.ConfigPeakOutputForward(.2, 10);
-        frontLeft.ConfigPeakOutputReverse(-.2, 10);
+    backRight.ConfigPeakOutputForward(1, 10);
+    backRight.ConfigPeakOutputReverse(-1, 10);
 
-        frontRight.ConfigPeakOutputForward(.2, 10);
-        frontRight.ConfigPeakOutputReverse(-.2, 10);
-    }
+    frontLeft.ConfigPeakOutputForward(1, 10);
+    frontLeft.ConfigPeakOutputReverse(-1, 10);
 
-    else {
-        backLeft.ConfigPeakOutputForward(1, 10);
-        backLeft.ConfigPeakOutputReverse(-1, 10);
-
-        backRight.ConfigPeakOutputForward(1, 10);
-        backRight.ConfigPeakOutputReverse(-1, 10);
-
-        frontLeft.ConfigPeakOutputForward(1, 10);
-        frontLeft.ConfigPeakOutputReverse(-1, 10);
-
-        frontRight.ConfigPeakOutputForward(1, 10);
-        frontRight.ConfigPeakOutputReverse(-1, 10);
-    }
+    frontRight.ConfigPeakOutputForward(1, 10);
+    frontRight.ConfigPeakOutputReverse(-1, 10);
 }
 
 void Drivetrain::setBrakeMode(enableStatus status) {

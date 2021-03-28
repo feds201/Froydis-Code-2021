@@ -153,7 +153,7 @@ void Robot::TeleopPeriodic() {
   // ------------------------------------------------------------------ SEQUENCING BUTTONS ----------------------------------------------------------------------------
 
     //Picking up balls off the ground sequence
-    if (operatorJoy.GetRawButtonPressed(ballPickupmMoveArmBtnSequence) && Shoot.wristOverrideStatus == DISABLED && Climb.scissorLiftStatus == RETRACTED) {  //Consider deleting Shootwristoverridestatus in here and below
+    if (operatorJoy.GetRawButtonPressed(ballPickupmMoveArmBtnSequence) && Shoot.wristOverrideStatus == DISABLED) {  //Consider deleting Shootwristoverridestatus in here and below
       Pickup.moveArm(); 
 
       if (Pickup.armState == EXTENDED) { //Stuff that initially happens when button is pressed
@@ -170,7 +170,7 @@ void Robot::TeleopPeriodic() {
       }
     }
 
-    if (Pickup.armState == EXTENDED && Shoot.wristOverrideStatus == DISABLED && Climb.scissorLiftStatus == RETRACTED) { //Stuff that should be constantly checked for when the arm is out and the sequence is happening
+    if (Pickup.armState == EXTENDED && Shoot.wristOverrideStatus == DISABLED) { //Stuff that should be constantly checked for when the arm is out and the sequence is happening
       Index.Divet(2.5, 3, INDEXER_SPEED_FINAL_BOT); 
 
       //Allows for operator to override Pickup belts in case they get jammed
@@ -183,7 +183,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Shooting without Vision - only runs when Pickup Arm is not extended (so as to not interfere with Indexer direction)
-    if (Pickup.armState == RETRACTED && Climb.scissorLiftStatus == RETRACTED) {
+    if (Pickup.armState == RETRACTED) {
 
       if (driverJoy.GetRawButtonPressed(wristOverrideStatusBtnSequence)) {
         Shoot.toggleWristOverride();
@@ -209,7 +209,8 @@ void Robot::TeleopPeriodic() {
           Shoot.shooterStatus = DISABLED; //Fix this so that 
           Shoot.ShootRPMs(0);
           
-          Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
+          //Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
+          Index.moveIndexFixedPos(indexPauseTime);
         }
 
         else {
@@ -227,7 +228,6 @@ void Robot::TeleopPeriodic() {
             Index.feedBall(FEEDER_WHEEL_SPEED);
             Index.setPushBall(EXTENDED);
             Index.Spin(INDEXER_SPEED_FINAL_BOT);
-            //Index.moveIndexFixedPos(indexPauseTime);
           }
 
           else {
@@ -267,7 +267,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Drivetrain shifter
-    if (driverJoy.GetRawButtonPressed(shifterBtnSequence) && Climb.scissorLiftStatus == RETRACTED) {
+    if (driverJoy.GetRawButtonPressed(shifterBtnSequence)) {
       Drive.Shift();
     }
     
@@ -348,7 +348,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Drivetrain (Shifter)
-    if (driverJoy.GetRawButtonPressed(shifterBtn) && Climb.scissorLiftStatus == RETRACTED) {
+    if (driverJoy.GetRawButtonPressed(shifterBtn)) {
       Drive.Shift();
     }
 
@@ -411,18 +411,7 @@ void Robot::TeleopPeriodic() {
   Shoot.Printer(); 
   Limelight.Printer();*/
 
-  //Logging - if the log is run, reset the time 
-  if (logThisTime) {
-    logThisTime = false;
-    logTicker = 0;
-
-    /*Logger::instance()-> Run(Drive.getPositions(), Drive.getVelocities(), Drive.getRPMs(), Drive.getCurrents(), Shoot.getRPMs(), 
-                            Shoot.getWristPosition(), Spinner.getPosition(), Spinner.getVelocity(), Spinner.getRPM(), 
-                            Spinner.getConfidence(), Climb.getWinchPosition(), leftJoyY, rightJoyX, 0.0005, 0.0005);
-    }*/
-
-    Logger::instance()-> Run(Shoot.getRPMs()[0], Shoot.getRPMs()[1]);
-  }
+  
 }
 
 void Robot::TestPeriodic() {}

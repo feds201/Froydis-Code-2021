@@ -8,14 +8,9 @@
 #pragma once
 
 #include "RobotMap.h"
-
-#include "Climber.h"
 #include "Drivetrain.h"
 #include "BallPickup.h"
 #include "Indexer.h"
-//#include "IndicatorLights.h"
-#include "Logger.h"
-//#include "PanelSpinner.h"
 #include "Shooter.h"
 #include "Vision.h"
 #include "Auton.h"
@@ -42,11 +37,8 @@ class Robot : public frc::TimedRobot {
 
     Drivetrain Drive{};
     Shooter Shoot{};
-    Climber Climb{};
     BallPickup Pickup{};
-    //PanelSpinner Spinner{};
     Indexer Index{};
-    //IndicatorLights Lights{"ttyUSB0", "ttyUSB1", frc::SerialPort::Port::kUSB};
     Vision Limelight{};
     Auton Autonomous{};
 

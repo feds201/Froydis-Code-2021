@@ -12,7 +12,7 @@
 class Shooter {
  public:
     Shooter();
-    void moveWristFixedPositions(direction);
+//    void moveWristFixedPositions(direction);
     void moveWrist(double);
     void moveWristToPosition(int);
     void toggleWristOverride();

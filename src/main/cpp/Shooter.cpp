@@ -137,22 +137,22 @@ void Shooter::incSpeed(direction dir) {
 }
 
 //Move wrist up or down using array of positions
-void Shooter::moveWristFixedPositions(direction dir) { 
-    if (dir == UP) {
-        currentWristPos++;
-        if (currentWristPos == 8) {
-            currentWristPos = 7;
-        }
-    }
-    else {
-        currentWristPos--;
-        if (currentWristPos == -1) {
-            currentWristPos = 0;
-        }
-    }
+// void Shooter::moveWristFixedPositions(direction dir) { 
+//     if (dir == UP) {
+//         currentWristPos++;
+//         if (currentWristPos == 8) {
+//             currentWristPos = 7;
+//         }
+//     }
+//     else {
+//         currentWristPos--;
+//         if (currentWristPos == -1) {
+//             currentWristPos = 0;
+//         }
+//     }
 
-    wrist.Set(ControlMode::Position, wristPosList[currentWristPos]);
-}
+//     wrist.Set(ControlMode::Position, wristPosList[currentWristPos]);
+// }
 
 void Shooter::shootSolution(direction dir) {
     if (dir == UP) {

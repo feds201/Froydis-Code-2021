@@ -66,22 +66,22 @@
    Move Wrist Down - Left Bumper
    Move Wrist Up - Right Bumper
    Toggle Wrist Override - View Button 
-   Move Wrist Down in Override - Right Trigger
-   Toggle Scissor Lift Can Be Deployed - Menu Button
-   Activate Scissor Lift - B Button
-   Activate Winch - Left Trigger
+   (not working) Move Wrist Down in Override - Right Trigger
+   (disabled) Toggle Scissor Lift Can Be Deployed - Menu Button
+   (disabled) Activate Scissor Lift - B Button
+   (disabled) Activate Winch - Left Trigger
 
    FREE BUTTONS: Y BUTTON
 
    Operator:
-   Reverse Ball Pickup Belts - Left Joystick Y Axis
-   Extend Pickup Arm, Move Pickup Belts, Rotate Indexer Sequence - Y Button
+   (disabled) Reverse Ball Pickup Belts - Left Joystick Y Axis
+   (disabled) Extend Pickup Arm, Move Pickup Belts, Rotate Indexer Sequence - Y Button
    Override Dither - Right Joystick X Axis
    Shoot Ball - A Button
    Decrement Shooter RPMs - Left Bumper
    Increment Shooter RPMs - Right Bumper
-   Vision High Shoot - X Button 
-   Cancel Vision High Shoot - Menu Button
+   (disabled) Vision High Shoot - X Button 
+   (disabled) Cancel Vision High Shoot - Menu Button
 
    FREE BUTTONS: B Button, Right Trigger, Left Trigger, View Button. X and Menu if we remove vision
 */
@@ -108,7 +108,7 @@ constexpr int pdpID = 0;
 constexpr int pressureTransducerID = 0; //FIX
 constexpr int PCMID = 0; 
 
-constexpr double riolooptime = 80;  //looptime in ms
+constexpr double riolooptime = 40;  //looptime in ms
 
 enum enableStatus {ENABLED, DISABLED};
 enum positionStatus {RETRACTED, EXTENDED};
@@ -135,11 +135,11 @@ constexpr int shootJoyChl = 1;  //Y Axis on Left Joystick (Operator)
 constexpr int shootChangeLevelDownBtn = 5; //Left Bumper (Operator)
 constexpr int moveWristChl = 3; //Right Trigger (Driver)
 
-constexpr int climbStatusBtn = 8; //Menu Button (Operator)
-constexpr int climbJoyChl = 3; //Right Trigger (Driver)
-constexpr int climbScissorJoyBtn = 3; //X Button (Driver)
+//constexpr int climbStatusBtn = 8; //Menu Button (Operator)
+//constexpr int climbJoyChl = 3; //Right Trigger (Driver)
+//constexpr int climbScissorJoyBtn = 3; //X Button (Driver)
 
-constexpr int ballPickupJoyChl = 5; //Y Axis on Right Joystick (Operator)
+constexpr int ballPickupJoyChl = 100; //Y Axis on Right Joystick (Operator) (changed from 5 to 100 in order to disable)
 constexpr int ballPickupMoveArmJoyChl = 100; //Left Trigger (Driver) (changed from 2 to 100 in order to disable)
 constexpr int ballPickupMoveArmReverseJoyBtn = 100; //Y Button (Driver) (changed from 3 to 100 in order to disable)
 
@@ -153,8 +153,8 @@ constexpr int switchVisionPipelineBtn = 7; //View Button (Driver)
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Joystick - Sequencing
-constexpr int ballPickupmMoveArmBtnSequence = 4; //Y button (Operator)
-constexpr int reverseBallPickupOverrideChl = 1; //Y Axis on Left Joystick (Operator)
+constexpr int ballPickupmMoveArmBtnSequence = 100; //Y button (Operator) (changed from 4 to 100 to disable)
+constexpr int reverseBallPickupOverrideChl = 100; //Y Axis on Left Joystick (Operator) (changed from 4 to 100 to disable)
 
 constexpr int shifterBtnSequence = 1; //A Button (Driver)
 
@@ -163,7 +163,7 @@ constexpr int shifterBtnSequence = 1; //A Button (Driver)
 //constexpr int winchChlSequence = 2; //Left Trigger (Driver)
 
 constexpr int overrideShooterDirectionBtnSequence = 3; //X Button (Operator)
-constexpr int cancelVisionShootHighBtnSequence = 8; //Menu Button (Operator)
+//constexpr int cancelVisionShootHighBtnSequence = 100; //Menu Button (Operator) (changed from 8 to 100 to disable)
 constexpr int switchPipelineBtnSequence = 3; //X Button (Driver)
 
 constexpr int ditherOverrideChlSequence = 4; //X Axis on Right Joystick (Operator)
@@ -201,16 +201,6 @@ constexpr int shiferFirstGear = 3;
 constexpr int shifterSecondGear = 4; 
 
 //Climber
-constexpr int winchMotorID = 100; //SRX changed to 100 to disable
-
-constexpr double winch_P = 0.75;
-constexpr double winch_I = 0;
-constexpr double winch_D = 0;
-
-constexpr int winchPos = 30000; 
-
-constexpr int scissorKForward = 100; //changed to 100 to disable
-constexpr int scissorKReverse= 100;  //changed to 100 to disable
 
 //Ball Pickup
 constexpr int pickupMotorID = 0; //SRX
@@ -227,14 +217,6 @@ constexpr int posOut = 450;
 constexpr double BALLPICKUP_ARM_SPEED = 1;
 
 //PanelSpinner
-constexpr int spinnerMotorID = 100; //SRX? Fix
-
-static constexpr auto i2cPort = frc::I2C::Port::kOnboard;
-
-static constexpr frc::Color kBlueTarget = frc::Color(0.121, 0.430, 0.447);
-static constexpr frc::Color kGreenTarget = frc::Color(0.165, 0.587, 0.249);
-static constexpr frc::Color kRedTarget = frc::Color(0.520, 0.356, 0.125);
-static constexpr frc::Color kYellowTarget = frc::Color(0.320, 0.563, 0.114);
 
 //Shooter
 constexpr int shooterMotorID = 21; //Spark
@@ -261,9 +243,9 @@ constexpr double wrist_maxIntegralAccum = 10;
 constexpr int indexerMotorID = 7; //SRX 
 constexpr int feederMotorID = 1; //SRX
 
-constexpr int index_P = 0.15; //for position control on slot 0 with absolute encoder counts.
-constexpr int index_I = 0;
-constexpr int index_D = 0;
+constexpr double index_P = 0.15; //for position control on slot 0 with absolute encoder counts.
+constexpr double index_I = 0;
+constexpr double index_D = 0;
 
 constexpr int pusherKReverse = 0;
 constexpr int pusherKForward = 7;
@@ -273,7 +255,7 @@ constexpr int indexSwitchID = 1000; //set to 1000 to disable
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.20;
 constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;  //reduced for better manual control
-constexpr double indexPauseTime = 2;
+constexpr double indexPauseTime = 3;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
 

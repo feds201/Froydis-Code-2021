@@ -8,12 +8,24 @@
 #include "Indexer.h"
 
 Indexer::Indexer() {
+	index.SetInverted(false);
 	index.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute, 0, 10); //Relative or Absolute? 
-    index.SetSelectedSensorPosition(0);
+    index.SetSensorPhase(false);
+	index.SetSelectedSensorPosition(0);
+	index.ConfigFeedbackNotContinuous(true);
+	index.SetNeutralMode(Brake);
+
+	index.ConfigPeakOutputForward(0.25);
+	index.ConfigPeakOutputReverse(-0.25);
+
+	index.ConfigAllowableClosedloopError(0, 10, 10);
+	index.ConfigForwardSoftLimitEnable(false);
+    index.ConfigReverseSoftLimitEnable(false);
 
 	index.Config_kP(0, index_P, 10);
 	index.Config_kI(0, index_I, 10);
 	index.Config_kD(0, index_D, 10);
+	index.ConfigMaxIntegralAccumulator(0, 100, 10);
 
 	feeder.ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 	feeder.SetSelectedSensorPosition(0);
@@ -28,10 +40,6 @@ void Indexer::Spin(double triggerForward, double triggerReverse) {
 		index.Set(ControlMode::PercentOutput, triggerForward - triggerReverse);
 	}	
 }
-
-//void Indexer::moveFixedPositions() {
-	
-//}
 
 //Overloaded method - spins indexer just using one speed input
 void Indexer::Spin(double speed) {
@@ -87,25 +95,18 @@ void Indexer::Divet(double time, double timeTwo, double speed) {
 	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (80ms) this converts to seconds
      
 	if (realTime < indexTime) {
-	// 	indexNum = indexNum;
-	index.Set(ControlMode::Position, 100);
-	 }
-	// 	if (indexNum > 2) {
-	// 		indexNum = 0;
-	// 	}
-	 	else if (realTime < 2* indexTime) {
-			 index.Set(ControlMode::Position, 1650);
-	// 		indexNum += indexNum;
-	 	}
-		 else if (realTime < 3* indexTime) {
-		 index.Set(ControlMode::Position, 3000);
-		 }
-		 else
-		 {
-			 fixedPosTime = 0;
-		 }
-	}
+		index.Set(ControlMode::Position, indexPosList[indexNum]);
+    }
+	else {
+		indexNum++;
 
+        if (indexNum == 3) {
+            indexNum = 0;
+        }
+		fixedPosTime = 0;
+	}
+    index.Set(ControlMode::Position, indexPosList[indexNum]);
+	}
 
 int Indexer::getIndexerPosition() {
 	return index.GetSelectedSensorPosition(0);
@@ -121,20 +122,16 @@ double Indexer::getCurrent() {
 
 void Indexer::Printer() {
 	std::cout << "Indexer Position " << getIndexerPosition() << " counts" << std::endl; //Not logged yet
-	std::cout << "Feeder RPM " << getFeederRPM() << std::endl; //Not logged yet
-	
+	std::cout << "Feeder RPM " << getFeederRPM() << std::endl; //Not logged yet	
 	std::cout << "Ball Pusher State: " << ((pneumaticPusher.Get() == frc::DoubleSolenoid::Value::kForward) ? "kForward (Up)" : "kReverse (Down)") << std::endl; //Not logged yet
-
 	std::cout << "Current: " << getCurrent() << " Amps" << std::endl;
 }
 
 void Indexer::dashboardPrinter() {
 	frc::SmartDashboard::PutNumber("Indexer Position (counts)", getIndexerPosition());
+	frc::SmartDashboard::PutNumber("Indexer Timer", realTime);
 	frc::SmartDashboard::PutNumber("Feeder RPM", getFeederRPM());
 	//frc::SmartDashboard::PutNumber("Indexer Current (amps)", getCurrent());
-
 	frc::SmartDashboard::PutString("Ball Pusher State",
 		 (pneumaticPusher.Get() == frc::DoubleSolenoid::Value::kForward) ? "kForward (Up)" : "kReverse (Down)");
-
-	//frc::SmartDashboard::PutNumber("Real Time", realTime);
 }
