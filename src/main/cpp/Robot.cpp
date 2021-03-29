@@ -86,6 +86,7 @@ void Robot::TeleopInit() {
   Index.Spin(0);
   Index.feedBall(0);
   Index.setPushBall(RETRACTED);
+  Index.startPos(50);
   Shoot.ShootRPMs(0);
   Shoot.moveWristToPosition(0);
   Drive.drivePercent(0, 0);
@@ -210,7 +211,7 @@ void Robot::TeleopPeriodic() {
           Shoot.ShootRPMs(0);
           
           //Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
-          Index.moveIndexFixedPos(indexPauseTime);
+          Index.moveIndexFixedPos((indexPauseTime));
         }
 
         else {
@@ -227,13 +228,14 @@ void Robot::TeleopPeriodic() {
           if (Shoot.currentRPM > 900) { //Make Shooter.Enabled
             Index.feedBall(FEEDER_WHEEL_SPEED);
             Index.setPushBall(EXTENDED);
-            Index.Spin(INDEXER_SPEED_FINAL_BOT);
+            //Index.Spin(INDEXER_SPEED_FINAL_BOT);
+            Index.moveIndexFixedPos(indexPauseTime);
           }
 
           else {
             Index.feedBall(0);
             Index.setPushBall(RETRACTED);
-            Index.Spin(0);
+            Index.startPos(50);
           }
         }
       }

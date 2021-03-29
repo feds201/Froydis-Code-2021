@@ -15,8 +15,8 @@ Indexer::Indexer() {
 	index.ConfigFeedbackNotContinuous(true);
 	index.SetNeutralMode(Brake);
 
-	index.ConfigPeakOutputForward(0.25);
-	index.ConfigPeakOutputReverse(-0.25);
+	index.ConfigPeakOutputForward(INDEXER_SPEED_FINAL_BOT);
+	index.ConfigPeakOutputReverse(-INDEXER_SPEED_FINAL_BOT);
 
 	index.ConfigAllowableClosedloopError(0, 10, 10);
 	index.ConfigForwardSoftLimitEnable(false);
@@ -89,10 +89,13 @@ void Indexer::Divet(double time, double timeTwo, double speed) {
 		divetTime = 0;
 	}
 }
+void Indexer::startPos(int indexStartPos){
+	index.Set(ControlMode::Position, indexStartPos);
+}
 
- void Indexer::moveIndexFixedPos(double indexTime) {
+void Indexer::moveIndexFixedPos(double indexTime) {
 	fixedPosTime += 1;
-	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (80ms) this converts to seconds
+	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (40ms) this converts to seconds
      
 	if (realTime < indexTime) {
 		index.Set(ControlMode::Position, indexPosList[indexNum]);
@@ -100,7 +103,7 @@ void Indexer::Divet(double time, double timeTwo, double speed) {
 	else {
 		indexNum++;
 
-        if (indexNum == 3) {
+        if (indexNum == 4) {
             indexNum = 0;
         }
 		fixedPosTime = 0;

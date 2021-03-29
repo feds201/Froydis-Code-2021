@@ -25,6 +25,7 @@ class Indexer {
   double getCurrent();
   void Printer();
   void dashboardPrinter();
+  void startPos(int);
 
   double divetTime = 0;
   double fixedPosTime = 0;
@@ -38,7 +39,7 @@ class Indexer {
 
   double realTime = 0;
 
-  int indexPosList[3] = {100, 1665, 3000}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
+  int indexPosList[4] = {50, 1665, 3000, 4050}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
 
   //frc::DigitalInput indexSwitch{indexSwitchID};
 };
