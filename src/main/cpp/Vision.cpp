@@ -9,7 +9,7 @@
 
 Vision::Vision() {
     nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", driverPipeline);
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_OFF);
+//    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_OFF);
 }
  
  /*
@@ -24,11 +24,11 @@ Vision::Vision() {
 void Vision::switchPipeline() {
     if (nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("getpipe", 0) == visionPipeline) {  
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", driverPipeline); //Driver View Pipe
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_OFF); //Force LED off
+    //    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_OFF); //Force LED off
     }
     else {
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", visionPipeline); //Vision pipe
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_ON); //Force LED on
+    //    nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", LED_ON); //Force LED on
     }
 }
 

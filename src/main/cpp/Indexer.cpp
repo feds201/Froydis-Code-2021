@@ -91,6 +91,7 @@ void Indexer::Divet(double time, double timeTwo, double speed) {
 }
 void Indexer::startPos(int indexStartPos){
 	index.Set(ControlMode::Position, indexStartPos);
+	fixedPosTime = 0;
 }
 
 void Indexer::moveIndexFixedPos(double indexTime) {
@@ -105,8 +106,9 @@ void Indexer::moveIndexFixedPos(double indexTime) {
 
         if (indexNum == 4) {
             indexNum = 0;
+			fixedPosTime = 0;
         }
-		fixedPosTime = 0;
+		//fixedPosTime = 0;
 	}
     index.Set(ControlMode::Position, indexPosList[indexNum]); // is this really needed?
 	}
