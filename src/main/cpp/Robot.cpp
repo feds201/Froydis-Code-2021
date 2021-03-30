@@ -212,7 +212,7 @@ void Robot::TeleopPeriodic() {
           Shoot.ShootRPMs(0);
           
           //Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
-          Index.moveIndexFixedPos((indexPauseTime/2));
+          Index.moveIndexFixedPos((indexPauseTime));
         }
 
         else {

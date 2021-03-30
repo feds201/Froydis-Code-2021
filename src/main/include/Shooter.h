@@ -63,8 +63,8 @@ class Shooter {
     //int speeds[5] = {1000, 1000, 2000, 2500, 3000};
 
     //revised shooting positions for 2021 (Home, Green, Yellow, Blue, Red Zones)
-    int wristPosList[5] = {0, 500, 700, 550, 450};
-    int speeds[5] = {1000, 1000, 1850, 2250, 2500};
+    int wristPosList[5] = {0, 500, 750, 650, 550};
+    int speeds[5] = {1000, 1000, 2500, 2500, 2750};
     
     int currentSpeedPos = 0;
 

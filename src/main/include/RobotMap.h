@@ -256,7 +256,7 @@ constexpr int indexPosList[4] = {50, 1665, 3000, 4070};
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.30;
 constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.225;
-constexpr double indexPauseTime = 2.0;
+constexpr double indexPauseTime = 1;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
 
