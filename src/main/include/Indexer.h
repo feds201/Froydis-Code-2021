@@ -37,9 +37,5 @@ class Indexer {
 
   frc::DoubleSolenoid pneumaticPusher{PCMID, pusherKForward, pusherKReverse};
 
-  double realTime = 0;
-
-  int indexPosList[4] = {50, 1665, 3000, 4050}; //will eventually be populated with the encoder values needed to rotate indexer to proper positions
-
-  //frc::DigitalInput indexSwitch{indexSwitchID};
+  double realTime = 0; 
 };

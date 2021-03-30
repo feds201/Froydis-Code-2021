@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
+#include "Indexer.h"
 
 //https://www.ctr-electronics.com/downloads/api/cpp/html/index.html
 //https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json
@@ -86,7 +87,7 @@ void Robot::TeleopInit() {
   Index.Spin(0);
   Index.feedBall(0);
   Index.setPushBall(RETRACTED);
-  Index.startPos(50);
+  Index.startPos(indexPosList[0]);
   Shoot.ShootRPMs(0);
   Shoot.moveWristToPosition(0);
   Drive.drivePercent(0, 0);
@@ -235,7 +236,7 @@ void Robot::TeleopPeriodic() {
           else {
             Index.feedBall(0);
             Index.setPushBall(RETRACTED);
-            Index.startPos(50);
+            Index.startPos(indexPosList[0]);
           }
         }
       }

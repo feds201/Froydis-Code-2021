@@ -66,7 +66,7 @@ void Indexer::setPushBall(positionStatus position) { //FIX LATER
 	}
 }
 
-void Indexer::feedBall(double speed) {
+void Indexer::feedBall(double speed) {   // Set indexer to home position in between functions
 	feeder.Set(ControlMode::PercentOutput, speed);
 } 
 
@@ -108,7 +108,7 @@ void Indexer::moveIndexFixedPos(double indexTime) {
         }
 		fixedPosTime = 0;
 	}
-    index.Set(ControlMode::Position, indexPosList[indexNum]);
+    index.Set(ControlMode::Position, indexPosList[indexNum]); // is this really needed?
 	}
 
 int Indexer::getIndexerPosition() {

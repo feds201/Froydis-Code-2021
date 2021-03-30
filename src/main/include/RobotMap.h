@@ -251,11 +251,12 @@ constexpr int pusherKReverse = 0;
 constexpr int pusherKForward = 7;
 
 constexpr int indexSwitchID = 1000; //set to 1000 to disable
+constexpr int indexPosList[4] = {50, 1665, 3000, 4050};
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.20;
-constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;  //reduced for better manual control
-constexpr double indexPauseTime = 1;
+constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.225;
+constexpr double indexPauseTime = 1.5;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
 
