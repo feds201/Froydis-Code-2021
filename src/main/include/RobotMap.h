@@ -200,6 +200,8 @@ constexpr int drive_maxIntegralAccum = 10000;
 constexpr int shiferFirstGear = 3; 
 constexpr int shifterSecondGear = 4; 
 
+constexpr int Pigeon = 4;
+
 //Climber
 
 //Ball Pickup
@@ -255,7 +257,7 @@ constexpr int indexPosList[4] = {50, 1665, 3000, 4070};
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.30;
-constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.225;
+constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;
 constexpr double indexPauseTime = 1;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
