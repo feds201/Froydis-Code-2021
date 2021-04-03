@@ -66,7 +66,7 @@ void Drivetrain::drivePercent(double forward, double turn) {
     frontRight.Set(TalonFXControlMode::PercentOutput, rightThrot);
 }
 
-//Drive using ControlMode::Velocity
+//Drive using ControlMode::Velocity (not used in 2021 Code)
 void Drivetrain::driveVelocity(double forward, double turn) {
     
     leftThrot = turn - forward;
@@ -282,4 +282,3 @@ void Drivetrain::dashboardPrinter() {
 
     frc::SmartDashboard::PutNumber("Back Left Current Position", positions[0]);
 }
-

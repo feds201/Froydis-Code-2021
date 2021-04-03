@@ -100,13 +100,13 @@ void Indexer::moveIndexFixedPos(double indexTime) {
 	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (40ms) this converts to seconds
      
 	if (realTime < indexTime) {
-		index.Set(ControlMode::Position, indexPosList[indexNum]);
+		index.Set(ControlMode::Position, indexPosList[(indexNum + 1)]);
     }
 	else {
 		indexNum++;
 
-        if (indexNum == 4) {
-            indexNum = 0;
+        if (indexNum == 3) {
+            indexNum = -1;
         }
 		fixedPosTime = 0;
 	}

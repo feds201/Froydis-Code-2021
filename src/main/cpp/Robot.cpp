@@ -210,9 +210,8 @@ void Robot::TeleopPeriodic() {
         if (fabs(Deadzone(operatorJoy.GetRawAxis(ditherOverrideChlSequence))) > .2) { //Has to be constantly held
           Shoot.shooterStatus = DISABLED; //Fix this so that 
           Shoot.ShootRPMs(0);
-          
-          //Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
-          Index.moveIndexFixedPos((indexPauseTime));
+          Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
+          //Index.moveIndexFixedPos((indexPauseTime));
         }
 
         else {
