@@ -74,14 +74,15 @@ void Indexer::feedBall(double speed) {   // Set indexer to home position in betw
 void Indexer::Divet(double time, double timeTwo, double speed) {
 
 	divetTime += 1; //Number of times loop repeats 
-	realTime = (divetTime * riolooptime) / 1000; //Since loop repeats every riolooptime (80ms) this converts it into seconds
+	realTime = (divetTime * riolooptime) / 1000; //Since loop repeats every riolooptime (40ms) this converts it into seconds
 
 	if (realTime < time) {
 		Spin(-1 * speed);
 	}
 
 	if ((realTime > time) && (realTime < timeTwo)) {
-		Spin(speed); //Spin the bot in the opposite direction for these 0.5 seconds
+		Spin(speed); //Spin the bot in the opposite direction for these 0.5 seconds (removed for final challenge)
+		//Spin(-1*speed);
 	}
 
 	else if (realTime > timeTwo) {
@@ -100,13 +101,13 @@ void Indexer::moveIndexFixedPos(double indexTime) {
 	realTime = (fixedPosTime * riolooptime) / 1000; //Since loop time repeats every riolooptime (40ms) this converts to seconds
      
 	if (realTime < indexTime) {
-		index.Set(ControlMode::Position, indexPosList[(indexNum + 1)]);
+		index.Set(ControlMode::Position, indexPosList[(indexNum)]);
     }
 	else {
 		indexNum++;
 
-        if (indexNum == 3) {
-            indexNum = -1;
+        if (indexNum == 4) {
+            indexNum = 0;
         }
 		fixedPosTime = 0;
 	}

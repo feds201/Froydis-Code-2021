@@ -97,7 +97,7 @@ void Auton::highGoalPickup(double userBackLeft, double fwd, double turn, Drivetr
         Shoot.ShootRPMs(0);
         Shoot.moveWristToPosition(0);
 
-        Index.Divet(2.5, 3, INDEXER_SPEED_FINAL_BOT); 
+        Index.Divet(2.5, 3.0, INDEXER_SPEED_FINAL_BOT); 
 
         if (Drive.getPositions()[0] >= backLeftAutonInitialPosition + userBackLeft) {
             Drive.drivePercent(.17, 0);

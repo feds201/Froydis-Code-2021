@@ -237,7 +237,7 @@ constexpr int wristSwitchID = 0;
 constexpr int SHOOTER_MAX_RPM = 5600;
 
 constexpr double wrist_P = 1;
-constexpr double wrist_I = 0.2;
+constexpr double wrist_I = 0.25;
 constexpr double wrist_D = 0;
 constexpr double wrist_maxIntegralAccum = 10;
 
@@ -256,8 +256,8 @@ constexpr int indexSwitchID = 1000; //set to 1000 to disable
 constexpr int indexPosList[4] = {50, 1665, 3000, 4070};
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
-constexpr double INDEXER_SPEED_FINAL_BOT = 0.30;
-constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;
+constexpr double INDEXER_SPEED_FINAL_BOT = 0.25;
+constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.08;
 constexpr double indexPauseTime = 1;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;

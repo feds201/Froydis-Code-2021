@@ -173,7 +173,7 @@ void Robot::TeleopPeriodic() {
     }
 
     if (Pickup.armState == EXTENDED && Shoot.wristOverrideStatus == DISABLED) { //Stuff that should be constantly checked for when the arm is out and the sequence is happening
-      Index.Divet(2.5, 3, INDEXER_SPEED_FINAL_BOT); 
+      Index.Divet(2.5, 3.0, INDEXER_SPEED_FINAL_BOT); 
 
       //Allows for operator to override Pickup belts in case they get jammed
       if (fabs(Deadzone(operatorJoy.GetRawAxis(reverseBallPickupOverrideChl)) > .2)) { //Might cause some issues with change of direction, test and fix
@@ -210,7 +210,7 @@ void Robot::TeleopPeriodic() {
         if (fabs(Deadzone(operatorJoy.GetRawAxis(ditherOverrideChlSequence))) > .2) { //Has to be constantly held
           Shoot.shooterStatus = DISABLED; //Fix this so that 
           Shoot.ShootRPMs(0);
-          Index.Divet(2, 2.5, INDEXER_MANUAL_DITHER_SPEED);
+          Index.Divet(2, 3.0, INDEXER_MANUAL_DITHER_SPEED);
           //Index.moveIndexFixedPos((indexPauseTime));
         }
 
