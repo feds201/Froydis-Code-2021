@@ -45,7 +45,7 @@ void Robot::AutonomousInit() {
   if (m_autoSelected == kAutoNameCustom) {
     // Custom Auto goes here
   } else {
-    // Default Auto goes here
+    // Default Auto goes here 
   }*/
   // -----------------------------------------------------------------------
   Drive.setBrakeMode(ENABLED); 
