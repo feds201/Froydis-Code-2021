@@ -18,7 +18,7 @@ class Drivetrain {
     void Shift();
     void setGear(int);
     void setSlot(int);
-    void setPeakOutput();
+    void setScissorPeakOutput(positionStatus);
     void setBrakeMode(enableStatus);
     void resetEncoderCounts();
     void configMotor(WPI_TalonFX&);

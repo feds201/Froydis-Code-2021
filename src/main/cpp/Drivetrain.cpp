@@ -25,7 +25,7 @@ Drivetrain::Drivetrain() {
     configMotor(backRight);
 
     setGear(1);
-    setBrakeMode(DISABLED);
+    setBrakeMode(ENABLED);
 
     //Current limits on devices and on Talon FX's
     //Current too high for too long return to home position 
@@ -106,7 +106,25 @@ void Drivetrain::setGear(int gear) {
 }
 
 //Configs peak output of motors
-void Drivetrain::setPeakOutput() {
+void Drivetrain::setScissorPeakOutput(positionStatus scissor) {
+
+    if (scissor == EXTENDED) {
+
+    backLeft.ConfigPeakOutputForward(0.2, 10);
+    backLeft.ConfigPeakOutputReverse(-0.2, 10);
+
+    backRight.ConfigPeakOutputForward(0.2, 10);
+    backRight.ConfigPeakOutputReverse(-0.2, 10);
+
+    frontLeft.ConfigPeakOutputForward(0.2, 10);
+    frontLeft.ConfigPeakOutputReverse(-0.2, 10);
+
+    frontRight.ConfigPeakOutputForward(0.2, 10);
+    frontRight.ConfigPeakOutputReverse(-0.2, 10);
+
+    }
+    
+    else {
 
     backLeft.ConfigPeakOutputForward(1, 10);
     backLeft.ConfigPeakOutputReverse(-1, 10);
@@ -119,6 +137,7 @@ void Drivetrain::setPeakOutput() {
 
     frontRight.ConfigPeakOutputForward(1, 10);
     frontRight.ConfigPeakOutputReverse(-1, 10);
+    }
 }
 
 void Drivetrain::setBrakeMode(enableStatus status) {

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "RobotMap.h"
+#include "Climber.h"
 #include "Drivetrain.h"
 #include "BallPickup.h"
 #include "Indexer.h"
@@ -37,6 +38,7 @@ class Robot : public frc::TimedRobot {
 
     Drivetrain Drive{};
     Shooter Shoot{};
+    Climber Climb{};
     BallPickup Pickup{};
     Indexer Index{};
     Vision Limelight{};

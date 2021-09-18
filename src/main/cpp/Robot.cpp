@@ -155,7 +155,9 @@ void Robot::TeleopPeriodic() {
   // ------------------------------------------------------------------ SEQUENCING BUTTONS ----------------------------------------------------------------------------
 
     //Picking up balls off the ground sequence
-    if (operatorJoy.GetRawButtonPressed(ballPickupmMoveArmBtnSequence) && Shoot.wristOverrideStatus == DISABLED) {  //Consider deleting Shootwristoverridestatus in here and below
+    if (operatorJoy.GetRawButtonPressed(ballPickupmMoveArmBtnSequence) && Shoot.wristOverrideStatus == DISABLED && Climb.scissorLiftStatus == RETRACTED) {  
+      //Consider deleting Shootwristoverridestatus in here and below
+    
       Pickup.moveArm(); 
 
       if (Pickup.armState == EXTENDED) { //Stuff that initially happens when button is pressed
@@ -172,7 +174,7 @@ void Robot::TeleopPeriodic() {
       }
     }
 
-    if (Pickup.armState == EXTENDED && Shoot.wristOverrideStatus == DISABLED) { //Stuff that should be constantly checked for when the arm is out and the sequence is happening
+    if (Pickup.armState == EXTENDED && Shoot.wristOverrideStatus == DISABLED && Climb.scissorLiftStatus == RETRACTED) { //Stuff that should be constantly checked for when the arm is out and the sequence is happening
       Index.Divet(2.5, 3.0, INDEXER_SPEED_FINAL_BOT); 
 
       //Allows for operator to override Pickup belts in case they get jammed
@@ -185,7 +187,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Shooting without Vision - only runs when Pickup Arm is not extended (so as to not interfere with Indexer direction)
-    if (Pickup.armState == RETRACTED) {
+    if (Pickup.armState == RETRACTED && Climb.scissorLiftStatus == RETRACTED) {
 
       if (driverJoy.GetRawButtonPressed(wristOverrideStatusBtnSequence)) {
         Shoot.toggleWristOverride();
@@ -269,37 +271,37 @@ void Robot::TeleopPeriodic() {
     }
 
     //Drivetrain shifter
-    if (driverJoy.GetRawButtonPressed(shifterBtnSequence)) {
+    if (driverJoy.GetRawButtonPressed(shifterBtnSequence) && Climb.scissorLiftStatus == RETRACTED) {
       Drive.Shift();
     }
     
   // ----------------------------------------------------------------- SEQUENCING CLIMBING ----------------------------------------------------------------------------
     //Change Climb Status
     
-    //if (driverJoy.GetRawButtonPressed(climbStatusBtnSequence) && Climb.scissorLiftStatus == RETRACTED;) 
+    if (driverJoy.GetRawButtonPressed(climbStatusBtnSequence) && Climb.scissorLiftStatus == RETRACTED); 
     
-    //{
-    //  Climb.toggleScissorCanBeDeployedStatus();
-    //}
+    {
+      Climb.toggleScissorCanBeDeployedStatus();
+    }
 
     //Climbing
-    //if (Climb.scissorCanBeDeployedStatus == ENABLED) {
-    //  if (driverJoy.GetRawButtonPressed(climbScissorJoyBtnSequence)) { 
-    //    Climb.scissorLift(Drive);
-    //    Pickup.Pickup(0);
-    //     Index.Spin(0);
-    //     Index.feedBall(0); 
-    //     Shoot.ShootRPMs(0);
-    //     Shoot.shooterStatus = DISABLED;
-    //   }
-    // }
+    if (Climb.scissorCanBeDeployedStatus == ENABLED) {
+      if (driverJoy.GetRawButtonPressed(climbScissorJoyBtnSequence)) { 
+        Climb.scissorLift(Drive);
+        Pickup.Pickup(0);
+        Index.Spin(0);
+        Index.feedBall(0); 
+        Shoot.ShootRPMs(0);
+        Shoot.shooterStatus = DISABLED;
+       }
+     }
 
     //Only turn on winch if the hook is on - the hook is on when the lift is retracted for the first time
-    // if (Climb.hookIsOn) {
-    //   if (fabs(Deadzone(driverJoy.GetRawAxis(winchChlSequence))) > 0.2) {
-    //     Climb.climbToPos(); 
-    //   }
-    // }
+    if (Climb.hookIsOn) {
+       if (fabs(Deadzone(driverJoy.GetRawAxis(winchChlSequence))) > 0.2) {
+         Climb.climbToPos(); 
+       }
+     }
   }
 
   // ---------------------------------------------------------------------- END ---------------------------------------------------------------------------------------
@@ -350,7 +352,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Drivetrain (Shifter)
-    if (driverJoy.GetRawButtonPressed(shifterBtn)) {
+    if (driverJoy.GetRawButtonPressed(shifterBtn) && Climb.scissorLiftStatus == RETRACTED) {
       Drive.Shift();
     }
 
@@ -367,20 +369,20 @@ void Robot::TeleopPeriodic() {
   // -------------------------------------------------------------- NON-SEQUENCING CLIMBING -----------------------------------------------------------------------------
 
     //Change Climb Status
-    // if (driverJoy.GetRawButtonPressed(climbStatusBtn) && Climb.scissorLiftStatus == RETRACTED) {
-    //   Climb.toggleScissorCanBeDeployedStatus();
-    // }
+     if (driverJoy.GetRawButtonPressed(climbStatusBtn) && Climb.scissorLiftStatus == RETRACTED) {
+       Climb.toggleScissorCanBeDeployedStatus();
+     }
 
-    // //Climbing
-    // if (Climb.scissorCanBeDeployedStatus == ENABLED) {
-    //   if (driverJoy.GetRawButton(climbScissorJoyBtn)) { 
-    //     Climb.scissorLift(Drive);
-    //   }
-    // }
+    //Climbing
+     if (Climb.scissorCanBeDeployedStatus == ENABLED) {
+       if (driverJoy.GetRawButton(climbScissorJoyBtn)) { 
+         Climb.scissorLift(Drive);
+       }
+     }
 
-  //   if (Climb.scissorLiftStatus == EXTENDED) {
-  //     Climb.Climb(Deadzone(driverJoy.GetRawAxis(climbJoyChl)));
-  //   }
+     if (Climb.scissorLiftStatus == EXTENDED) {
+       Climb.Climb(Deadzone(driverJoy.GetRawAxis(climbJoyChl)));
+     }
   }
 
   // ----------------------------------------------------------------------- END ----------------------------------------------------------------------------------------
@@ -398,7 +400,7 @@ void Robot::TeleopPeriodic() {
 
   //Dashboard and Printing
   Pickup.dashboardPrinter();
-  //Climb.dashboardPrinter();
+  Climb.dashboardPrinter();
   Drive.dashboardPrinter();
   Index.dashboardPrinter();
   //Spinner.dashboardPrinter();
