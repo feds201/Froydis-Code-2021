@@ -203,13 +203,13 @@ constexpr int shifterSecondGear = 4;
 constexpr int Pigeon = 4;
 
 //Climber
-constexpr int winchMotorID = 100; //SRX changed o 100 to disable
+constexpr int winchMotorID = 14; //SRX Should be 14 but not wired.
 constexpr double winch_P = 0.75;
 constexpr double winch_I = 0;
 constexpr double winch_D = 0;
 constexpr int winchPos = 30000;
-constexpr int scissorKForward = 100; //change to 100 to disable
-constexpr int scissorKReverse = 100; //change to 100 to disable
+constexpr int scissorKForward = 1; //change to 100 to disable
+constexpr int scissorKReverse = 6; //change to 100 to disable
 
 
 //Ball Pickup
