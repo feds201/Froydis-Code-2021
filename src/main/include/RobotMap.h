@@ -108,7 +108,7 @@ constexpr int pdpID = 0;
 constexpr int pressureTransducerID = 0; //FIX
 constexpr int PCMID = 0; 
 
-constexpr double riolooptime = 40;  //looptime in ms
+constexpr double riolooptime = 60;  //looptime in ms
 
 enum enableStatus {ENABLED, DISABLED};
 enum positionStatus {RETRACTED, EXTENDED};
@@ -153,8 +153,8 @@ constexpr int switchVisionPipelineBtn = 7; //View Button (Driver)
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Joystick - Sequencing
-constexpr int ballPickupmMoveArmBtnSequence = 4; //Y button (Operator) (changed from 4 to 100 to disable)
-constexpr int reverseBallPickupOverrideChl = 4; //Y Axis on Left Joystick (Operator) (changed from 4 to 100 to disable)
+constexpr int ballPickupmMoveArmBtnSequence = 4; //Y button (Operator)
+constexpr int reverseBallPickupOverrideChl = 1; //Y Axis on Left Joystick (Operator)
 
 constexpr int shifterBtnSequence = 1; //A Button (Driver)
 
@@ -200,10 +200,10 @@ constexpr int drive_maxIntegralAccum = 10000;
 constexpr int shiferFirstGear = 3; 
 constexpr int shifterSecondGear = 4; 
 
-constexpr int Pigeon = 4;
+//constexpr int Pigeon = 4;
 
 //Climber
-constexpr int winchMotorID = 14; //SRX Should be 14 but not wired.
+constexpr int winchMotorID = 4; //SRX 4
 constexpr double winch_P = 0.75;
 constexpr double winch_I = 0;
 constexpr double winch_D = 0;
@@ -264,7 +264,7 @@ constexpr int indexSwitchID = 1000; //set to 1000 to disable
 constexpr int indexPosList[4] = {50, 1665, 3000, 4070};
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
-constexpr double INDEXER_SPEED_FINAL_BOT = 0.25;
+constexpr double INDEXER_SPEED_FINAL_BOT = 0.20;
 constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.08;
 constexpr double indexPauseTime = 1;
 

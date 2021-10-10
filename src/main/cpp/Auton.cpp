@@ -30,12 +30,12 @@ void Auton::lowGoal(double userBackLeft, double fwd, double turn, Drivetrain& Dr
         if (realTime < autonTime) {
             Index.feedBall(FEEDER_WHEEL_SPEED);
             Index.setPushBall(EXTENDED);
-            Index.Spin(INDEXER_SPEED_FINAL_BOT);
+            Index.Spin(INDEXER_SPEED_FINAL_BOT);  //replace with Index.move
         }
         else {
             Index.feedBall(0);
             Index.setPushBall(RETRACTED);
-            Index.Spin(0);
+            Index.Spin(0);                   //make sure indexer goes to home pos
             Shoot.ShootRPMs(0);
             Shoot.moveWristToPosition(0);
         }
@@ -55,13 +55,13 @@ void Auton::highGoal(double userBackLeft, double fwd, double turn, Drivetrain& D
     else if (realTime < 8) {
         Index.feedBall(FEEDER_WHEEL_SPEED);
         Index.setPushBall(EXTENDED);
-        Index.Spin(INDEXER_SPEED_FINAL_BOT);
+        Index.Spin(INDEXER_SPEED_FINAL_BOT);    //replace with index.move for positions
     }
 
     else {
         Index.feedBall(0);
         Index.setPushBall(RETRACTED);
-        Index.Spin(0);
+        Index.Spin(0);   //make sure indexer moves back to home position
         Shoot.ShootRPMs(0);
         Shoot.moveWristToPosition(0);
 
@@ -87,13 +87,13 @@ void Auton::highGoalPickup(double userBackLeft, double fwd, double turn, Drivetr
     else if (realTime < 8) {
         Index.feedBall(FEEDER_WHEEL_SPEED);
         Index.setPushBall(EXTENDED);
-        Index.Spin(INDEXER_SPEED_FINAL_BOT);
+        Index.moveIndexFixedPos(indexPauseTime);
     }
 
     else {
         Index.feedBall(0);
         Index.setPushBall(RETRACTED);
-        //Index.Spin(0);
+        //Index.Spin(0);   //make sure indexer moves back to home position
         Shoot.ShootRPMs(0);
         Shoot.moveWristToPosition(0);
 
