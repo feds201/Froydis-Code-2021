@@ -170,6 +170,7 @@ void Robot::TeleopPeriodic() {
       else {
         Pickup.Pickup(0); //Turn off sequence
         Index.Spin(0);
+        Index.startPos(indexPosList[0]);
         Index.divetTime = 0; 
       }
     }

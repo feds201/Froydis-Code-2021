@@ -15,7 +15,7 @@ void Auton::lowGoal(double userBackLeft, double fwd, double turn, Drivetrain& Dr
 
     if (Drive.getPositions()[0] <= backLeftAutonInitialPosition + userBackLeft) {
         Drive.drivePercent(-.20, 0);
-        
+        Index.startPos(indexPosList[0]);
         Shoot.moveWristToPosition(550);
         Shoot.ShootRPMs(1000); 
     }
@@ -30,12 +30,12 @@ void Auton::lowGoal(double userBackLeft, double fwd, double turn, Drivetrain& Dr
         if (realTime < autonTime) {
             Index.feedBall(FEEDER_WHEEL_SPEED);
             Index.setPushBall(EXTENDED);
-            Index.Spin(INDEXER_SPEED_FINAL_BOT);  //replace with Index.move
+            Index.moveIndexFixedPos(indexPauseTime);
         }
         else {
             Index.feedBall(0);
             Index.setPushBall(RETRACTED);
-            Index.Spin(0);                   //make sure indexer goes to home pos
+            Index.startPos(indexPosList[0]);                   //make sure indexer goes to home pos
             Shoot.ShootRPMs(0);
             Shoot.moveWristToPosition(0);
         }
@@ -50,18 +50,20 @@ void Auton::highGoal(double userBackLeft, double fwd, double turn, Drivetrain& D
     if (realTime < 4) {
         Shoot.moveWristToPosition(750); //Used to be 700
         Shoot.ShootRPMs(2500); //Used to be 2250
+        Index.startPos(indexPosList[0]);
+
     }
 
     else if (realTime < 8) {
         Index.feedBall(FEEDER_WHEEL_SPEED);
         Index.setPushBall(EXTENDED);
-        Index.Spin(INDEXER_SPEED_FINAL_BOT);    //replace with index.move for positions
+        Index.moveIndexFixedPos(indexPauseTime);    //replace with index.move for positions
     }
 
     else {
         Index.feedBall(0);
         Index.setPushBall(RETRACTED);
-        Index.Spin(0);   //make sure indexer moves back to home position
+        Index.startPos(indexPosList[0]);   //make sure indexer moves back to home position
         Shoot.ShootRPMs(0);
         Shoot.moveWristToPosition(0);
 
@@ -82,6 +84,7 @@ void Auton::highGoalPickup(double userBackLeft, double fwd, double turn, Drivetr
     if (realTime < 4) {
         Shoot.moveWristToPosition(750); //Used to be 700
         Shoot.ShootRPMs(2500); //Used to be 2250
+        Index.startPos(indexPosList[0]);
     }
 
     else if (realTime < 8) {
@@ -93,7 +96,7 @@ void Auton::highGoalPickup(double userBackLeft, double fwd, double turn, Drivetr
     else {
         Index.feedBall(0);
         Index.setPushBall(RETRACTED);
-        //Index.Spin(0);   //make sure indexer moves back to home position
+        Index.startPos(indexPosList[0]);   //make sure indexer moves back to home position
         Shoot.ShootRPMs(0);
         Shoot.moveWristToPosition(0);
 
