@@ -55,21 +55,21 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 
-  if (autonOption == 1) {
-    Autonomous.lowGoal(153000, 1, 0, Drive, Shoot, Index); //31504 = 4 feet
-  }
+  //if (autonOption == 1) {
+  //  Autonomous.lowGoal(153000, 1, 0, Drive, Shoot, Index); //31504 = 4 feet
+  // }
 
-  else if (autonOption == 2) {
-    Autonomous.highGoal(-40000, 1, 0, Drive, Shoot, Index); //91000
-  }
+  //else if (autonOption == 2) {
+  Autonomous.highGoal(-40000, 1, 0, Drive, Shoot, Index); //91000
+  // }
 
-  else if (autonOption == 3) {
-    Autonomous.highGoalPickup(-80000, 1, 0, Drive, Shoot, Index, Pickup);
-  }
+  //else if (autonOption == 3) {
+  //  Autonomous.highGoalPickup(-80000, 1, 0, Drive, Shoot, Index, Pickup);
+  //}
 
-  else{
-    std::cout << "A valid Auton was not chosen";
-  }
+  //else{
+  //  std::cout << "A valid Auton was not chosen";
+  
 
   Drive.dashboardPrinter();
   Shoot.dashboardPrinter();

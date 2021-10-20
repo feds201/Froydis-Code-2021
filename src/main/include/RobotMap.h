@@ -108,7 +108,7 @@ constexpr int pdpID = 0;
 constexpr int pressureTransducerID = 0; //FIX
 constexpr int PCMID = 0; 
 
-constexpr double riolooptime = 60;  //looptime in ms
+constexpr double riolooptime = 80;  //looptime in ms
 
 enum enableStatus {ENABLED, DISABLED};
 enum positionStatus {RETRACTED, EXTENDED};

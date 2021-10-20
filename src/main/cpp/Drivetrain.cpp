@@ -25,7 +25,7 @@ Drivetrain::Drivetrain() {
     configMotor(backRight);
 
     setGear(1);
-    setBrakeMode(ENABLED);
+    setBrakeMode(DISABLED);  //should brake mode be added to controller?
 
     //Current limits on devices and on Talon FX's
     //Current too high for too long return to home position 
@@ -57,8 +57,8 @@ Drivetrain::Drivetrain() {
 //Drive using ControlMode::Percent
 void Drivetrain::drivePercent(double forward, double turn) {
     
-    leftThrot = 0.75*(turn - forward);
-    rightThrot = 0.75*(turn + forward);
+    leftThrot = 0.5*(turn - forward);
+    rightThrot = 0.5*(turn + forward);
     
     backLeft.Set(TalonFXControlMode::PercentOutput, leftThrot);
     frontLeft.Set(TalonFXControlMode::PercentOutput, leftThrot);
