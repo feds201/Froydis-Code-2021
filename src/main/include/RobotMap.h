@@ -265,7 +265,7 @@ constexpr int indexPosList[4] = {50, 1665, 3000, 4070};
 
 constexpr double INDEXER_SPEED_DEMO_BOT = 0.175;
 constexpr double INDEXER_SPEED_FINAL_BOT = 0.20;
-constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.08;
+constexpr double INDEXER_MANUAL_DITHER_SPEED = 0.15;
 constexpr double indexPauseTime = 1;
 
 constexpr double FEEDER_WHEEL_SPEED = 1;
@@ -279,4 +279,4 @@ constexpr int driverPipeline = 1;
 constexpr int visionPipeline = 0;
 
 constexpr int LED_OFF = 1;
-constexpr int LED_ON = 3;
+constexpr int LED_ON = 1;   //changed from 3 to try to disable LEDs
